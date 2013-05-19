@@ -41,24 +41,56 @@ def_pw_rep = "2"
 #def_pw_seed = "no"
 
 #Get user input
-pw_len = raw_input("How long do you want your password to be? (Default: 8): ")
-pw_num = raw_input("How many passwords would you like to generate? (Default: 10): ")
-pw_case = raw_input("What case should letters be in? Choices are: lower, upper, both. (Default: both): ")
-pw_spec = raw_input("Do you want to use special characters? (Default: no): ")
-pw_sim = raw_input("Do want to use similar characters? (Default: no): ")
-pw_rep = raw_input("What is the maximum you want any charachter to be repeated? (Default: 2): ")
+#pw_len = raw_input("How long do you want your password to be? (Default: 8): ")
+#pw_num = raw_input("How many passwords would you like to generate? (Default: 10): ")
+#pw_case = raw_input("What case should letters be in? Choices are: lower, upper, both. (Default: both): ")
+#pw_spec = raw_input("Do you want to use special characters? (Default: no): ")
+#pw_sim = raw_input("Do want to use similar characters? (Default: no): ")
+#pw_rep = raw_input("What is the maximum you want any charachter to be repeated? (Default: 2): ")
 #pw_seed = raw_input("Do you want to use a seed to generate your password? (Default: no): ")
 #set_pw_seed = raw_input("Please enter your seed: ")
 
 #Password resource lists
 pw_lower_lst = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
-pw_upper_lst = pw_lower.upper()
+#Be efficient and generate pw_upper_lst from pw_lower_lst
+pw_upper_lst = []
+for each in pw_lower_lst:
+    each = each.upper()
+    pw_upper_lst.append(each)
+#pw_upper_lst = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+pw_num_lst = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
 pw_spec_lst = ["`", "~", "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "-", "-", "=", "+", "<", ">", ",", ".", "?"]
+
+pw_lower_desc = ["alpha", "bravo", "charlie", "delta", "echo", "foxtrot", "golf", "hotel", "india", "juliett", "kilo", "lima", "mike", "november", "oscar", "papa", "quebec", "romeo", "sierra", "tango", "uniform", "victor", "whiskey", "x-ray", "yankee", "zulu"]
+#Be lazy and generate pw_upper_desc from pw_lower_desc
+pw_upper_desc = []
+for each in pw_lower_desc:
+    each = each.upper()
+    pw_upper_desc.append(each)
+pw_num_desc = ["Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine"]
+pw_spec_desc = ["BackQuote", "Tildy", "ExclimationPoint", "At", "Hash", "DollarSign", "Percent", "Carrot", "Ampersand", "Astrix", "LeftPerentheses", "RightPerentheses", "Minus", "Dash", "Equals", "Plus", "LessThan", "MoreThan", "Comma", "Period", "QuestionMark"]
 
 #Diag
 print pw_lower_lst
 print pw_upper_lst
+print pw_num_lst
 print pw_spec_lst
+print pw_lower_desc
+print pw_upper_desc
+print pw_num_desc
+print pw_spec_desc
+
+
+password_0_lst = []
+
+while def_pw_len >= 0:
+    x = random.choice(pw_lower_lst + pw_upper_lst + pw_num_lst + pw_spec_lst)
+    password_0_lst.append(x)
+    def_pw_len -= 1
+
+password = string.join(password_0_lst)
+
+print "Your password is: %s" %(password.replace(" ", ""))
 
 #Useful info:
 #random.choice(string.ascii_letters + string.digits)
