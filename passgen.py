@@ -80,6 +80,17 @@ print pw_upper_desc
 print pw_num_desc
 print pw_spec_desc
 
+if pw_len == "":
+    pw_len = def_pw_len
+
+if pw_num == "":
+    pw_num = def_pw_num
+    
+if pw_case == "":
+    pw_case = def_pw_case
+
+
+
 
 password_0_lst = []
 
