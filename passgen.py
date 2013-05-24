@@ -38,11 +38,11 @@ def_pw_sim = "no"
 #How many times to reuse a character in a password
 def_pw_rep = "2"
 #Use a user supplied seed?
-#def_pw_seed = "no"
+def_pw_seed = "no"
 
 #Get user input
-#pw_len = raw_input("How long do you want your password to be? (Default: 8): ")
-#pw_num = raw_input("How many passwords would you like to generate? (Default: 10): ")
+pw_len = raw_input("How long do you want your password to be? (Default: 8): ")
+pw_num = raw_input("How many passwords would you like to generate? (Default: 10): ")
 #pw_case = raw_input("What case should letters be in? Choices are: lower, upper, both. (Default: both): ")
 #pw_spec = raw_input("Do you want to use special characters? (Default: no): ")
 #pw_sim = raw_input("Do want to use similar characters? (Default: no): ")
@@ -71,37 +71,58 @@ pw_num_desc = ["Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "E
 pw_spec_desc = ["BackQuote", "Tildy", "ExclimationPoint", "At", "Hash", "DollarSign", "Percent", "Carrot", "Ampersand", "Astrix", "LeftPerentheses", "RightPerentheses", "Minus", "Dash", "Equals", "Plus", "LessThan", "MoreThan", "Comma", "Period", "QuestionMark"]
 
 #Diag
-print pw_lower_lst
-print pw_upper_lst
-print pw_num_lst
-print pw_spec_lst
-print pw_lower_desc
-print pw_upper_desc
-print pw_num_desc
-print pw_spec_desc
+#print pw_lower_lst
+#print pw_upper_lst
+#print pw_num_lst
+#print pw_spec_lst
+#print pw_lower_desc
+#print pw_upper_desc
+#print pw_num_desc
+#print pw_spec_desc
 
+# Check for user specified values, if none given use defaults, if given change to int where appropriate.
 if pw_len == "":
     pw_len = def_pw_len
+else:
+    pw_len = int(pw_len)
 
 if pw_num == "":
     pw_num = def_pw_num
+else:
+    pw_num = int(pw_num)
+
+#if pw_case == "":
+#    pw_case = def_pw_case
+
+#if pw_spec == "":
+#    pw_spec = def_pw_spec
+
+#if pw_sim == "":
+#    pw_sim = def_pw_sim
     
-if pw_case == "":
-    pw_case = def_pw_case
+#if pw_rep == "":
+#    pw_rep = def_pw_rep
+
+#if pw_seed == "":
+#    pw_seed = def_pw_seed
+
+# Save some things for future reference here
+pw_len_orig = pw_len
 
 
+# Make a password
+while pw_num >= 1:
+    password_0_lst = []
+    while pw_len >= 1:
+        x = random.choice(pw_lower_lst + pw_upper_lst + pw_num_lst + pw_spec_lst)
+        password_0_lst.append(x)
+        pw_len -= 1
+    password = string.join(password_0_lst)
+    print "Password %s is: %s" %(pw_num, password.replace(" ", ""))
+    pw_len = pw_len_orig
+    pw_num -= 1
 
 
-password_0_lst = []
-
-while def_pw_len >= 0:
-    x = random.choice(pw_lower_lst + pw_upper_lst + pw_num_lst + pw_spec_lst)
-    password_0_lst.append(x)
-    def_pw_len -= 1
-
-password = string.join(password_0_lst)
-
-print "Your password is: %s" %(password.replace(" ", ""))
 
 #Useful info:
 #random.choice(string.ascii_letters + string.digits)
