@@ -30,9 +30,9 @@ def_pw_len = 8
 # Number of passwords to create
 def_pw_num = 10
 #Use upercase, lowercase, or both
-def_pw_case = "both"
+#def_pw_case = "both"
 #Use special characters
-def_pw_spec = "no"
+#def_pw_spec = "no"
 #Use similar characters (0 & O, etc)
 def_pw_sim = "no"
 #How many times to reuse a character in a password
@@ -43,8 +43,8 @@ def_pw_seed = "no"
 #Get user input
 pw_len = raw_input("How long do you want your password to be? (Default: 8): ")
 pw_num = raw_input("How many passwords would you like to generate? (Default: 10): ")
-#pw_case = raw_input("What case should letters be in? Choices are: lower, upper, both. (Default: both): ")
-#pw_spec = raw_input("Do you want to use special characters? (Default: no): ")
+pw_case = raw_input("What case should letters be in? Choices are: lower, upper, both. (Default: both): ")
+pw_spec = raw_input("Do you want to use special characters? (Default: no): ")
 #pw_sim = raw_input("Do want to use similar characters? (Default: no): ")
 #pw_rep = raw_input("What is the maximum you want any charachter to be repeated? (Default: 2): ")
 #pw_seed = raw_input("Do you want to use a seed to generate your password? (Default: no): ")
@@ -91,11 +91,17 @@ if pw_num == "":
 else:
     pw_num = int(pw_num)
 
-#if pw_case == "":
-#    pw_case = def_pw_case
+# Note, if the option is blank or "both" then nothing is done.
+pw_case = pw_case.lower()
+if pw_case == "upper":
+    pw_lower_lst = []
+elif pw_case == "lower":
+    pw_upper_lst = []
 
-#if pw_spec == "":
-#    pw_spec = def_pw_spec
+#Note, if the option is "yes" then nothing is done.
+pw_spec = pw_spec.lower()
+if pw_spec == "" or pw_spec == "no":
+    pw_spec_lst = []
 
 #if pw_sim == "":
 #    pw_sim = def_pw_sim
