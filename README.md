@@ -17,4 +17,4 @@ Feature name - Implemented(X)
 -Allow user to specify no similar characters
 -Allow user to specify how many times a character is repeated
 -Allow user to seed with input
--Allow user to print phonetics as an option
+-Allow user to print phonetics as an option  (X)

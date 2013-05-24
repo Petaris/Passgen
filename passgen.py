@@ -4,6 +4,10 @@
 
 #Passgen is a random password generator
 
+# Written by Petaris
+# Petaris at gmail.com
+# Released under the GPL v2
+
 #Features to implement:
 #Feature name - Implemented(X)
 #-Generate a random password (X)
@@ -16,10 +20,14 @@
 #-Allow user to specify no similar characters
 #-Allow user to specify how many times a character is repeated
 #-Allow user to seed with input
-#-Allow user to print phonetics as an option
+#-Allow user to print phonetics as an option  (X)
 
 
 print "Welcome to Passgen!"
+print ""
+print "Written by Petaris"
+print "Released under the GPL v2"
+print ""
 
 #Imports 
 import string
@@ -30,15 +38,11 @@ import random
 def_pw_len = 8
 # Number of passwords to create
 def_pw_num = 10
-#Use upercase, lowercase, or both
-#def_pw_case = "both"
-#Use special characters
-#def_pw_spec = "no"
 #Use similar characters (0 & O, etc)
 #def_pw_sim = "no"
 #How many times to reuse a character in a password
 #def_pw_rep = "2"
-#Use a user supplied seed?
+#Use a user supplied seed? Passgen will use the string entered as the resource.
 #def_pw_seed = "no"
 #Print phonetics for passwords?
 def_pw_phon = "no"
@@ -61,23 +65,10 @@ pw_upper_lst = []
 for each in pw_lower_lst:
     each = each.upper()
     pw_upper_lst.append(each)
-#pw_upper_lst = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
 pw_num_lst = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
 pw_spec_lst = ["`", "~", "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "-", "_", "=", "+", "<", ">", ",", ".", "?"]
 
 #Phonetics dictionary
-#pw_lower_desc = {"a": "alpha", "b": "bravo", "c": "charlie", "d": "delta", "e": "echo", "f": "foxtrot", "g": "golf", "h": "hotel", "i": "india", "j": "juliett", "k": "kilo", "l": "lima", "m": "mike", "n": "november", "o": "oscar", "p": "papa", "q": "quebec", "r": "romeo", "s": "sierra", "t": "tango", "u": "uniform", "v": "victor", "w": "whiskey", "x": "x-ray", "y": "yankee", "z": "zulu"}
-
-#Be lazy and generate pw_upper_desc from pw_lower_desc
-#pw_upper_desc = []
-#for each in pw_lower_desc:
-#    each = each.upper()
-#    pw_upper_desc.append(each)
-#print pw_upper_desc
-#pw_upper_desc = {"A": "ALPHA", "B": "BRAVO", "C": "CHARLIE", "D": "DELTA", "E": "ECHO", "F": "FOXTROT", "G": "GOLF", "H": "HOTEL", "I": "INDIA", "J": "JULIETT", "K": "KILO", "L": "LIMA", "M": "MIKE", "N": "NOVEMBER", "O": "OSCAR", "P": "PAPA", "Q": "QUEBEC", "R": "ROMEO", "S": "SIERRA", "T": "TANGO", "U": "UNIFORM", "V": "VICTOR", "W": "WHISKEY", "X": "X-RAY", "Y": "YANKEE", "Z": "ZULU"}
-#pw_num_desc = {"0": "Zero", "1": "One", "2": "Two", "3": "Three", "4": "Four", "5": "Five", "6": "Six", "7": "Seven", "8":"Eight", "9": "Nine"}
-#pw_spec_desc = {"`": "BackQuote", "~": "Tildy", "!": "ExclimationPoint", "@": "At", "#": "Hash", "$": "DollarSign", "%": "Percent", "^": "Carrot", "&": "Ampersand", "*": "Astrix", "(": "LeftPerentheses", ")": "RightPerentheses", "-": "Minus", "_": "Underscore", "=": "Equals", "+": "Plus", "<": "LessThan", ">": "MoreThan", ",": "Comma", ".": "Period", "?": "QuestionMark"}
-
 pw_phon_desc = {"a": "alpha", "b": "bravo", "c": "charlie", "d": "delta", "e": "echo", "f": "foxtrot", "g": "golf", "h": "hotel", "i": "india", "j": "juliett", "k": "kilo", "l": "lima", "m": "mike", "n": "november", "o": "oscar", "p": "papa", "q": "quebec", "r": "romeo", "s": "sierra", "t": "tango", "u": "uniform", "v": "victor", "w": "whiskey", "x": "x-ray", "y": "yankee", "z": "zulu", "A": "ALPHA", "B": "BRAVO", "C": "CHARLIE", "D": "DELTA", "E": "ECHO", "F": "FOXTROT", "G": "GOLF", "H": "HOTEL", "I": "INDIA", "J": "JULIETT", "K": "KILO", "L": "LIMA", "M": "MIKE", "N": "NOVEMBER", "O": "OSCAR", "P": "PAPA", "Q": "QUEBEC", "R": "ROMEO", "S": "SIERRA", "T": "TANGO", "U": "UNIFORM", "V": "VICTOR", "W": "WHISKEY", "X": "X-RAY", "Y": "YANKEE", "Z": "ZULU", "0": "Zero", "1": "One", "2": "Two", "3": "Three", "4": "Four", "5": "Five", "6": "Six", "7": "Seven", "8":"Eight", "9": "Nine", "`": "BackQuote", "~": "Tildy", "!": "ExclimationPoint", "@": "At", "#": "Hash", "$": "DollarSign", "%": "Percent", "^": "Carrot", "&": "Ampersand", "*": "Astrix", "(": "LeftPerentheses", ")": "RightPerentheses", "-": "Minus", "_": "Underscore", "=": "Equals", "+": "Plus", "<": "LessThan", ">": "MoreThan", ",": "Comma", ".": "Period", "?": "QuestionMark"}
 
 #Diag
@@ -122,6 +113,7 @@ if pw_spec == "" or pw_spec == "no":
 #if pw_seed == "":
 #    pw_seed = def_pw_seed
 
+# Make sure input is lower case
 pw_phon == pw_phon.lower()
 
 # Save some things for future reference here
@@ -145,9 +137,4 @@ while pw_num >= 1:
         print "Password %s phonetics are: %s" %(pw_num, phonetics)
     pw_len = pw_len_orig
     pw_num -= 1
-
-
-
-#Useful info:
-#random.choice(string.ascii_letters + string.digits)
 
