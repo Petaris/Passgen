@@ -115,7 +115,7 @@ elif pw_case == "lower":
 
 #Note, if the option is "yes" then nothing is done.
 pw_spec = pw_spec.lower()
-if pw_spec == "" or pw_spec == "no":
+if pw_spec == "" or pw_spec == "no" or pw_spec == "n":
     pw_spec_lst = []
 
 #if pw_sim == "":
@@ -143,7 +143,7 @@ while pw_num >= 1:
         pw_len -= 1
     password = string.join(password_lst)
     print "Password %s is: %s" %(pw_num, password.replace(" ", ""))
-    if pw_phon == "yes":
+    if pw_phon == "yes" or pw_phon == "y":
         password_phon = []
         for each in password_lst:
             password_phon.append(pw_phon_desc[each])
