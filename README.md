@@ -18,3 +18,4 @@ Feature name - Implemented(X)
 -Allow user to specify how many times a character is repeated
 -Allow user to seed with input
 -Allow user to print phonetics as an option  (X)
+-Give an option for Cisco safe passwords, no "?" (X)
