@@ -35,6 +35,7 @@
 #-Allow user to specify how many times a character is repeated
 #-Allow user to seed with input
 #-Allow user to print phonetics as an option  (X)
+#-Give an option for Cisco safe passwords, no "?" (X)
 
 
 print "Welcome to Passgen!"
@@ -65,7 +66,8 @@ def_pw_phon = "no"
 pw_len = raw_input("How long do you want your password to be? (Default: 8): ")
 pw_num = raw_input("How many passwords would you like to generate? (Default: 10): ")
 pw_case = raw_input("What case should letters be in? Choices are: lower, upper, both. (Default: both): ")
-pw_spec = raw_input("Do you want to use special characters? (Default: no): ")
+print "The cisco option will omit the question mark character from the special charachters list"
+pw_spec = raw_input("Do you want to use special characters? Choices are: yes, no, cisco. (Default: no): ")
 #pw_sim = raw_input("Do want to use similar characters? (Default: no): ")
 #pw_rep = raw_input("What is the maximum you want any charachter to be repeated? (Default: 2): ")
 #pw_seed = raw_input("Do you want to use a seed to generate your password? (Default: no): ")
@@ -81,7 +83,6 @@ for each in pw_lower_lst:
     pw_upper_lst.append(each)
 pw_num_lst = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
 pw_spec_lst = ["`", "~", "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "-", "_", "=", "+", "<", ">", ",", ".", "?"]
-
 #Phonetics dictionary
 pw_phon_desc = {"a": "alpha", "b": "bravo", "c": "charlie", "d": "delta", "e": "echo", "f": "foxtrot", "g": "golf", "h": "hotel", "i": "india", "j": "juliett", "k": "kilo", "l": "lima", "m": "mike", "n": "november", "o": "oscar", "p": "papa", "q": "quebec", "r": "romeo", "s": "sierra", "t": "tango", "u": "uniform", "v": "victor", "w": "whiskey", "x": "x-ray", "y": "yankee", "z": "zulu", "A": "ALPHA", "B": "BRAVO", "C": "CHARLIE", "D": "DELTA", "E": "ECHO", "F": "FOXTROT", "G": "GOLF", "H": "HOTEL", "I": "INDIA", "J": "JULIETT", "K": "KILO", "L": "LIMA", "M": "MIKE", "N": "NOVEMBER", "O": "OSCAR", "P": "PAPA", "Q": "QUEBEC", "R": "ROMEO", "S": "SIERRA", "T": "TANGO", "U": "UNIFORM", "V": "VICTOR", "W": "WHISKEY", "X": "X-RAY", "Y": "YANKEE", "Z": "ZULU", "0": "Zero", "1": "One", "2": "Two", "3": "Three", "4": "Four", "5": "Five", "6": "Six", "7": "Seven", "8":"Eight", "9": "Nine", "`": "BackQuote", "~": "Tildy", "!": "ExclimationPoint", "@": "At", "#": "Hash", "$": "DollarSign", "%": "Percent", "^": "Carrot", "&": "Ampersand", "*": "Astrix", "(": "LeftPerentheses", ")": "RightPerentheses", "-": "Minus", "_": "Underscore", "=": "Equals", "+": "Plus", "<": "LessThan", ">": "MoreThan", ",": "Comma", ".": "Period", "?": "QuestionMark"}
 
@@ -117,6 +118,8 @@ elif pw_case == "lower":
 pw_spec = pw_spec.lower()
 if pw_spec == "" or pw_spec == "no" or pw_spec == "n":
     pw_spec_lst = []
+elif pw_spec == "cisco":
+	pw_spec_lst = ["`", "~", "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "-", "_", "=", "+", "<", ">", ",", "."]
 
 #if pw_sim == "":
 #    pw_sim = def_pw_sim
@@ -135,6 +138,11 @@ pw_len_orig = pw_len
 
 
 # Make a password
+print " "
+if pw_spec == "cisco":
+	print "Your Cisco safe passwords are:"
+elif pw_spec != "cisco":
+	print "Your passwords are:"
 while pw_num >= 1:
     password_lst = []
     while pw_len >= 1:
